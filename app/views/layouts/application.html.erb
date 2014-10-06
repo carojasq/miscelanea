@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Miscelanea</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "blog-post" %>
+
+    <title> Software gestor de miscelánea </title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+ <% if @mensaje %>
+ 	<script>     alert(<%= @mensaje %>);  </script>
+ <% end %>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+
+    <% if admin_signed_in? %>
+
+         <li>
+            Bienvenido administrador
+          </li>
+          <li>
+            <%= link_to "Cerrar sesión", destroy_admin_session_path, :method => :delete %>
+          </li>
+          <li>
+            <%= link_to "Editar perfil", edit_admin_registration_path %>
+          </li>
+
+        
+    <% elsif admin_signed_in? %>
+
+             <li>
+            Bienvenido vendedor
+          </li>
+          <li>
+            <%= link_to "Cerrar sesión", destroy_seller_session_path, :method => :delete %>
+          </li>
+          <li>
+            <%= link_to "Editar perfil", edit_seller_registration_path %>
+          </li>
+
+        <% else %>
+
+           <li> Bienvenido visitante </li>
+
+    <% end %> 
+    </ul>
+    
+  </div>
 
 <%= yield %>
 

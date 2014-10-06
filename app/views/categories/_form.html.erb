@@ -1,0 +1,25 @@
+<%= form_for @category do |c| %>
+  <% if @category.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@category.errors.count, "error") %> no fue posible actualizar categoría </h2>
+    <ul>
+    <% @category.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= c.label "Nombre" %><br>
+    <%= c.text_field :name %>
+  </p>
+
+  <p>
+    <%= c.label "Descripción" %><br>
+    <%= c.text_field :description %>
+  </p>
+ 
+  <p>
+    <%= c.submit %>
+  </p>
+<% end %>

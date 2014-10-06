@@ -1,6 +1,7 @@
 *.rbc
 capybara-*.html
 .rspec
+*.lock
 /log
 #/tmp
 #/db/*.sqlite3
@@ -29,3 +30,4 @@ pickle-email-*.html
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+README.rdoc

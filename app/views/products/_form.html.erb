@@ -1,0 +1,43 @@
+<%= form_for @product do |p| %>
+  <% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited
+      this product from being saved:</h2>
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= p.label "Nombre" %><br>
+    <%= p.text_field :name %>
+  </p>
+  <p>
+    <%= p.label "Descripción" %><br>
+    <%= p.text_field :description %>
+  </p>
+  <p>
+    <%= p.label "Precio" %><br>
+    <%= p.number_field :price %>
+  </p>
+  <p>
+    <%= p.label "Cantidad disponible" %><br>
+    <%= p.number_field :quantity %>
+  </p>
+ 
+  <p>
+    <%= p.label "Seleccione categoría" %><br>
+    <%= p.collection_select :category_id, Category.all, :id, :name %>
+  </p>
+
+   <p>
+    <%= p.label "Seleccione proovedor" %><br>
+    <%= p.collection_select :provider_id, Provider.all, :id, :name %>
+  </p>
+ 
+  <p>
+    <%= p.submit %>
+  </p>
+<% end %>

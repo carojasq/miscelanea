@@ -4,10 +4,10 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.float :price
-      t.integer :quantity
+      t.integer :quantity, default: 1
       t.references :provider, index: true
       t.references :category, index: true
-      t.boolean :active
+      t.boolean :active, , default: true
 
       t.timestamps
     end
