@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006215602) do
+ActiveRecord::Schema.define(version: 20141007001307) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20141006215602) do
     t.string   "name"
     t.string   "description"
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documents", force: true do |t|
+    t.string   "name"
+    t.date     "valid_until"
+    t.string   "document_file_file_name"
+    t.string   "document_file_content_type"
+    t.integer  "document_file_file_size"
+    t.datetime "document_file_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

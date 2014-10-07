@@ -1,0 +1,20 @@
+
+
+  <h1> <%= @product.name  %> </h1>
+
+  <p class="lead">
+    Proveedor: <a href="#"> <%=  @product.provider.name %></a> <br>
+    Categoría: <a href="#"> <%=  @product.category.name %></a>  <br>
+    Disponible:  <%=  @product.quantity %>  <br>
+    Precio: $ <%=  @product.price %> <br>
+   </p>
+  <hr>
+
+<h3> Description </h3>
+<p >
+	<%=  @product.description %>
+</p>
+
+
+<%= link_to 'Back', products_path %> | <%= link_to 'Edit', products_path(@product) %>
+</div>

@@ -1,0 +1,23 @@
+<h1> Gestión de documentos </h1>
+
+<%= link_to 'Añadir documento nuevo', new_document_path %>
+
+<table class="table">
+  <tr>
+    <th> Nombre </th> 
+    <th> Valido hasta </th>
+    <th> Archivo  </th>
+    <th colspan="3">  Actions </th>
+  </tr>
+
+  <% @documents.each do |p| %>
+  <tr>
+  <td> <%= p.name %> </td> 
+  <td> <%= p.valid_until %> </td> 
+  <td> <%= p.document_file_file_name %> </td> 
+  <td> <%= link_to "Modificar", edit_document_path(p) %></td> 
+  <td> <%= link_to "Eliminar", document_path(p), method: :delete, data: {confirm: "Desea eliminar archivo?"} %></td> 
+  <td> <%= link_to "Descargar archivo", p.document_file(:original, false) %></td>  
+    </tr>
+  <% end %>
+</table>

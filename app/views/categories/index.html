@@ -7,7 +7,7 @@
     <th> Nombre </th> 
     <th> Descripción </th>
     <th> Activa </th>
-    <th colspan="3">  Actions </th>
+    <th colspan="2">  Actions </th>
   </tr>
 
   <% @categories.each do |c| %>
@@ -15,7 +15,6 @@
   <td> <%= c.name %> </td> 
   <td> <%= c.description %> </td> 
   <td> <%= c.active %> </td> 
-  <td> <%= link_to "Ver", category_path(c) %> </td>
   <td> <%= link_to "Modificar", edit_category_path(c) %></td> 
   <td> <%= link_to "Desactivar", category_path(c), method: :delete, data: {confirm: "Desea marcar la categoria como inactiva?"} %></td> 
     </tr>

@@ -8,7 +8,7 @@
     <th> Teléfono </th>
     <th> Dirección </th>
     <th> Es áctivo </th>
-    <th colspan="3">  Actions </th>
+    <th colspan="2">  Actions </th>
   </tr>
 
   <% @providers.each do |p| %>
@@ -17,7 +17,6 @@
   <td> <%= p.telephone %> </td> 
   <td> <%= p.address %> </td> 
   <td> <%= p.active %> </td> 
-  <td> <%= link_to "Ver", provider_path(p) %> </td>
   <td> <%= link_to "Modificar", edit_provider_path(p) %></td> 
   <td> <%= link_to "Desactivar", provider_path(p), method: :delete, data: {confirm: "Desea marcar el proveedor como inactivo?"} %></td> 
     </tr>

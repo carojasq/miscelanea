@@ -39,7 +39,7 @@ class ProvidersController < ApplicationController
   def create
   	@provider = Provider.new(provider_params)
   	if @provider.save 
-  		@mensaje = "Categoría añadida con éxito"
+  		@mensaje = "Proveedor añadido con éxito"
   		redirect_to providers_path
   	else
   		@mensaje = "No se pudo almacenar categoría"
@@ -48,8 +48,6 @@ class ProvidersController < ApplicationController
   end
   private
   def provider_params
-  	  	puts params
-
      params.require(:provider).permit(:name, :telephone, :address)
   end
 end
