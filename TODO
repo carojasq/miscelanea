@@ -1,7 +1,8 @@
 * Edit admin and seller model to add name
 * Add order model
 * Add product admin page (displays categories an products)
-* Dynamic product search by name
+* Dynamic product search by name http://asciicasts.com/episodes/258-token-fields
 * Register seller from admin profile
 * Welcome page
+* Date validation http://guides.rubyonrails.org/v4.1.4/active_record_callbacks.html
 
