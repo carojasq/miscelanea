@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seller_id: 
+  paid: false
+  paid_at: 2014-10-08 23:45:17
+
+two:
+  seller_id: 
+  paid: false
+  paid_at: 2014-10-08 23:45:17
