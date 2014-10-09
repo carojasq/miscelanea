@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require dataTables/jquery.dataTables.foundation
 //= require_tree .

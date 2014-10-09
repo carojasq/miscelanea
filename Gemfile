@@ -29,8 +29,16 @@ gem 'spring',        group: :development
 # User authentication
 gem 'devise'
 
+
 # File management
-gem "paperclip", "~> 4.2"
+gem 'paperclip', "~> 4.2"
+
+# For nice look
+
+gem 'zurb-foundation', '~> 4.0.0'
+gem 'jquery-datatables-rails', '~> 2.2.3'
+gem 'foundation-icons-sass-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

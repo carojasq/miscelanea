@@ -1,65 +1,99 @@
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
-    <%= stylesheet_link_tag "bootstrap" %>
-    <%= stylesheet_link_tag "blog-post" %>
+    <meta charset="utf-8" />
 
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%#= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <title> Software gestor de miscelánea </title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
+        <%= javascript_include_tag "application" %>
+
     <%= csrf_meta_tags %>
   </head>
+
   <body>
- <% if @mensaje %>
- 	<script>     alert(<%= @mensaje %>);  </script>
- <% end %>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Gestion de miscelanea</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
 
+<section class="top-bar-section">
+     <ul class="right">
     <% if admin_signed_in? %>
+      <li class="active"><a href="#">Bienvenido administrador</a></li>
+      <li> 
+          <%= link_to "Cerrar sesión", destroy_admin_session_path, :method => :delete %>
+      </li>
+    <% elsif seller_signed_in? %>
+      <li class="active"><a href="#">Bienvenido vendedor</a></li>
+      <li> 
+          <%= link_to "Cerrar sesión", destroy_seller_session_path, :method => :delete %>
+      </li>
+    <% else %>
+      <li class="active"><a href="#">Bienvenido visitante</a></li>
+      <li> 
+          <%= link_to "Ingresar como vendedor", new_seller_session_path %>
+      </li>
+      <li> 
+          <%= link_to "Ingresar como administrador", new_admin_session_path%>
+      </li>
+    <% end %>  
+     </ul>
 
-         <li>
-            Bienvenido administrador
-          </li>
-          <li>
-            <%= link_to "Gestionar documentos", documents_path %>
-          </li>
-          <li>
-            <%= link_to "Gestionar proveedores", providers_path %>
-          </li>
+     <ul class="left">
+    <% if admin_signed_in? %>
+      <li class="has-dropdown">
+        <a href="#">Gestion de productos</a>
+        <ul class="dropdown">
           <li>
             <%= link_to "Gestionar productos", products_path %>
           </li>
           <li>
             <%= link_to "Gestionar categorías", categories_path %>
           </li>
-          <li>
-            <%= link_to "Cerrar sesión", destroy_admin_session_path, :method => :delete %>
-          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Gestionar documentos", documents_path %>
+      </li>
+      <li>
+        <%= link_to "Gestionar proveedores", providers_path %>
+      </li>
+    <% elsif seller_signed_in? %>
+      <li>
+        Gestion de caja
+      </li>
+
+    <% end %>  
+     </ul>
+
+
         
-    <% elsif admin_signed_in? %>
 
-             <li>
-            Bienvenido vendedor
-          </li>
-          <li>
-            <%= link_to "Cerrar sesión", destroy_seller_session_path, :method => :delete %>
-          </li>
-          <li>
-            <%= link_to "Editar perfil", edit_seller_registration_path %>
-          </li>
 
-        <% else %>
 
-           <li> Bienvenido visitante </li>
+    </section>
 
-    <% end %> 
-    </ul>
+</nav>
+    <%= yield %>
+
     
-  </div>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>
+
+
+

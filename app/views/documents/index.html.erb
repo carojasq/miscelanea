@@ -1,6 +1,6 @@
 <h1> Gestión de documentos </h1>
 
-<%= link_to 'Añadir documento nuevo', new_document_path %>
+<%= link_to 'Añadir documento nuevo', new_document_path, class: "button" %>
 
 <table class="table">
   <tr>
@@ -15,9 +15,9 @@
   <td> <%= p.name %> </td> 
   <td> <%= p.valid_until %> </td> 
   <td> <%= p.document_file_file_name %> </td> 
-  <td> <%= link_to "Modificar", edit_document_path(p) %></td> 
-  <td> <%= link_to "Eliminar", document_path(p), method: :delete, data: {confirm: "Desea eliminar archivo?"} %></td> 
-  <td> <%= link_to "Descargar archivo", p.document_file(:original, false) %></td>  
+  <td> <i class="fi-pencil"> <%= link_to "Modificar", edit_document_path(p) %> </i> </td> 
+  <td> <i class="fi-trash"> <%= link_to "Eliminar", document_path(p), method: :delete, data: {confirm: "Desea eliminar archivo?"} %> </i></td> 
+  <td> <i class="fi-download"> <%= link_to "Descargar archivo", p.document_file(:original, false) %> </i></td>  
     </tr>
   <% end %>
 </table>

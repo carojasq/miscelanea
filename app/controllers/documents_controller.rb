@@ -40,7 +40,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-
+    @document = Document.new(document_params)
   	if @document.save 
   		@mensaje = "Documento añadido con éxito"
   		redirect_to documents_path
