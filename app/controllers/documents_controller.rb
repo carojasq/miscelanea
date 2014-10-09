@@ -34,9 +34,6 @@ class DocumentsController < ApplicationController
 
   def index 
   	@documents = Document.all
-    puts "HERE ARE THE ATTRIBUTES"
-    puts @documents[0].attributes
-    puts @documents[0].class
   end
 
   def create

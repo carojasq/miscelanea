@@ -1,5 +1,7 @@
 * Edit admin and seller model to add name
-* Add order model
+* Add order model\
+	- Edit orderline controller (linking to order show)
+	- Finish order controllers
 * Add product admin page (displays categories an products)
 * Dynamic product search by name http://asciicasts.com/episodes/258-token-fields
 * Register seller from admin profile
