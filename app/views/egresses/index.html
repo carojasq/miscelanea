@@ -1,0 +1,24 @@
+<h1> Lista de egresos </h1>
+
+<%= link_to 'Añadir egreso', new_egress_path %>
+
+<table id="egresses">
+  <thead>
+  <tr>
+    <th> Fecha </th> 
+    <th> Descripción </th>
+    <th> Valor </th>
+  </tr>
+</thead>
+  <tbody>
+  <% @egresses.each do |e| %>
+  <tr>
+  <td> <%= e.created_at %> </td> 
+  <td> <%= e.description %> </td> 
+  <td> <%= e.value %> </td> 
+
+    </tr>
+  <% end %>
+</tbody>
+
+</table>

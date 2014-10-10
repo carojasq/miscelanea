@@ -1,0 +1,25 @@
+<%= form_for @egress do |f| %>
+
+<% if @egress.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(@egress.errors.count, "error") %> prohibited
+  this egress from being saved:</h2>
+<ul>
+<% @egress.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<p>
+<%= f.label "Descripción" %><br>
+<%= f.select :description, Egress::OPTIONS %>
+</p>
+  <p>
+    <%= f.label "Valor" %><br>
+    <%= f.number_field :value %>
+  </p>
+   <p>
+    <%= f.submit %>
+  </p>
+ <% end %>
