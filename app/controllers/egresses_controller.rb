@@ -1,4 +1,8 @@
 class EgressesController < ApplicationController
+before_action :authenticate_admin!, only: [:new,:create, :edit, :destroy]
+before_action :authenticate_seller!, only: [:new,:create, :edit, :destroy]
+
+
   def new
   	@egress = Egress.new
   end

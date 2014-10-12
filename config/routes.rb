@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :sellers
+  devise_for :sellers, :controllers => {:registrations => 'sellers/registrations'}
   devise_for :admins
   resources :products
   resources :categories
@@ -7,6 +7,16 @@ Rails.application.routes.draw do
   resources :documents
   resources :orders
   resources :egresses
+  resources :orders do
+    resources :order_lines
+  end
+  resources :order_lines
+  get 'sales/:id' => 'sales#show', as: "show_sale"
+  get 'sales/' => 'sales#index'
+
+
+  
+  get 'orders/checkout/:id' => 'orders#checkout', as: 'checkout_order'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

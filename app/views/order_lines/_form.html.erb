@@ -1,0 +1,19 @@
+
+<%= form_for ([@order, @order.order_lines.build]), role: "form" do |f| %>
+
+
+
+  <p>
+    <%= f.label  "Producto" %>
+    <%= f.collection_select :product_id, Product.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label "Cantidad" %>
+    <%= f.number_field :quantity %>
+  </p>
+
+ <%= f.submit "Añadir", class: "button", data: {options: "align:right", dropdown: "drop"}  %>
+
+<% end %>
+</div>
+           

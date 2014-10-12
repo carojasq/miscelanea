@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010150647) do
+ActiveRecord::Schema.define(version: 20141011223610) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141010150647) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
@@ -59,14 +60,18 @@ ActiveRecord::Schema.define(version: 20141010150647) do
 
   create_table "order_lines", force: true do |t|
     t.integer  "order_id"
+    t.integer  "sale_id"
     t.integer  "product_id"
     t.integer  "quantity"
+    t.float    "final_unit_price"
+    t.float    "final_total_price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "order_lines", ["order_id"], name: "index_order_lines_on_order_id"
   add_index "order_lines", ["product_id"], name: "index_order_lines_on_product_id"
+  add_index "order_lines", ["sale_id"], name: "index_order_lines_on_sale_id"
 
   create_table "orders", force: true do |t|
     t.integer  "seller_id"
@@ -102,6 +107,15 @@ ActiveRecord::Schema.define(version: 20141010150647) do
     t.datetime "updated_at"
   end
 
+  create_table "sales", force: true do |t|
+    t.integer  "value"
+    t.integer  "seller_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales", ["seller_id"], name: "index_sales_on_seller_id"
+
   create_table "sellers", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -115,6 +129,7 @@ ActiveRecord::Schema.define(version: 20141010150647) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
   end
 
   add_index "sellers", ["email"], name: "index_sellers_on_email", unique: true

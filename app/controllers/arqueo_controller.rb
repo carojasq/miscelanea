@@ -1,0 +1,2 @@
+class ArqueoController < ApplicationController
+end
