@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :order_lines
   get 'sales/:id' => 'sales#show', as: "show_sale"
   get 'sales/' => 'sales#index'
+  get 'order/' => 'orders#show', as: "my_order"
   root 'welcome#index'
 
   

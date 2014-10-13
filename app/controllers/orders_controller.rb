@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
 
   def show
-    @order = Order.find(params[:id]) # Find article by id
+    @order = current_seller.order # Find article by id
     @order_total  = 0
     @order.order_lines.each do |ol|
       @order_total += ol.quantity * ol.product.price

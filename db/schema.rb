@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011223610) do
+ActiveRecord::Schema.define(version: 20141013214519) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -56,7 +56,10 @@ ActiveRecord::Schema.define(version: 20141011223610) do
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "seller_id"
   end
+
+  add_index "egresses", ["seller_id"], name: "index_egresses_on_seller_id"
 
   create_table "order_lines", force: true do |t|
     t.integer  "order_id"

@@ -1,6 +1,5 @@
 class EgressesController < ApplicationController
-before_action :authenticate_admin!, only: [:new,:create, :edit, :destroy]
-before_action :authenticate_seller!, only: [:new,:create, :edit, :destroy]
+before_action :authenticate_seller!, only: [:new,:create, :index]
 
 
   def new
@@ -12,11 +11,16 @@ before_action :authenticate_seller!, only: [:new,:create, :edit, :destroy]
   end
 
   def index 
-  	@egresses = Egress.all
+    if seller_signed_in?
+  	 @egresses = current_seller.egresses
+    elsif admin_signed_in?
+      @egresses = Egress.all
+    end
   end
 
   def create
     @egress = Egress.new(egress_params)
+    @egress.seller = current_seller
   	if @egress.save 
   		@mensaje = "Documento añadido con éxito"
   		redirect_to egresses_path

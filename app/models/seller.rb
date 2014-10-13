@@ -5,6 +5,7 @@ class Seller < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_one :order
   has_many :sales
+  has_many :egresses
 
   def to_s
   	"#{email}"

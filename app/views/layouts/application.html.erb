@@ -15,7 +15,7 @@
     <title> Software gestor de miscelánea </title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
-        <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application" %>
 
     <%= csrf_meta_tags %>
   </head>
@@ -39,7 +39,12 @@
           <%= link_to "Cerrar sesión", destroy_admin_session_path, :method => :delete %>
       </li>
     <% elsif seller_signed_in? %>
-      <li class="active"><a href="#">Bienvenido vendedor</a></li>
+      <li class="active">
+        <%= link_to "Carro de compra", my_order_path %>
+      </li>
+      <li>
+        <%= link_to "Registrar egreso", new_egress_path %>
+      </li>
       <li> 
           <%= link_to "Cerrar sesión", destroy_seller_session_path, :method => :delete %>
       </li>
@@ -74,9 +79,9 @@
         <%= link_to "Gestionar proveedores", providers_path %>
       </li>
     <% elsif seller_signed_in? %>
-      <li>
-        Gestion de caja
-      </li>
+          <li> <a href="#"> Bienvenido vendedor  </a> </li>
+          <li> <%= link_to "Mis ventas", sales_path %> </li>
+          <li> <%= link_to "Mis egresos", egresses_path %>  </li>
 
     <% end %>  
      </ul>
