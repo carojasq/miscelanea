@@ -22,7 +22,11 @@ class ProductsController < ApplicationController
 
   def destroy
   	@product = Product.find(params[:id])
-  	@product.active = false
+    unless @product.active
+      @product.active = true
+    else
+      @product.active = false
+    end
   	@product.save
   	@mensaje = "Producto marcado como inactiva"
   	redirect_to products_path
@@ -38,6 +42,7 @@ class ProductsController < ApplicationController
 
   def create
   	@product = Product.new(product_params)
+    @product.active = true
   	if @product.save 
   		@mensaje = "Producto añadida con éxito"
   		redirect_to products_path

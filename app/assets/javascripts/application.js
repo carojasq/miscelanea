@@ -10,12 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require_self
+//= require_tree .
 //= require jquery
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require chosen-jquery
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
-//= require_tree .
+//$(document).foundation();
 
-$(document).foundation();
