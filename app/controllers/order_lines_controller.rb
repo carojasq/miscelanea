@@ -11,7 +11,6 @@ class OrderLinesController < ApplicationController
 
 	def edit
 		@order_line = OrderLine.find(params[:id])
-		@order = @order_line.order
 	end
 
 	def update

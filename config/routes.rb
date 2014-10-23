@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'sales/:id' => 'sales#show', as: "show_sale"
   get 'sales/' => 'sales#index'
   get 'order/' => 'orders#show', as: "my_order"
+  match "cash_count" => "cash_count#show", as: :cash_count, via: [:get, :post]
   root 'welcome#index'
 
   

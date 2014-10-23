@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArqueoControllerTest < ActionController::TestCase
+class CashCountControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
