@@ -15,6 +15,10 @@
   <div><%= f.label "Confirmación de contraseña" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+  <div><%= f.label "Rol" %><br /> 
+     <%= f.collection_select :role_id, Role.all, :id, :name %></div>
+
+
   <div><%= f.submit "Registrarse" %></div>
 <% end %>
 

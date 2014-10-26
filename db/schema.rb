@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011223610) do
+ActiveRecord::Schema.define(version: 20141026002901) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141011223610) do
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "order_lines", force: true do |t|
@@ -55,14 +56,14 @@ ActiveRecord::Schema.define(version: 20141011223610) do
   add_index "order_lines", ["sale_id"], name: "index_order_lines_on_sale_id"
 
   create_table "orders", force: true do |t|
-    t.integer  "seller_id"
+    t.integer  "user_id"
     t.boolean  "paid",       default: false
     t.datetime "paid_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["seller_id"], name: "index_orders_on_seller_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
@@ -88,13 +89,39 @@ ActiveRecord::Schema.define(version: 20141011223610) do
     t.datetime "updated_at"
   end
 
-  create_table "sales", force: true do |t|
-    t.integer  "value"
-    t.integer  "seller_id"
+  create_table "roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sales", ["seller_id"], name: "index_sales_on_seller_id"
+  create_table "sales", force: true do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "role_id"
+    t.string   "full_name"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

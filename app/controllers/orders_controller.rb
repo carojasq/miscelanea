@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_seller!, only: [:new,:checkout, :edit, :show]
+  before_action :authenticate_user!, only: [:new,:checkout, :edit, :show]
 
 
   def show
-    @order = current_seller.order # Find article by id
+    @order = current_user.order # Find article by id
     @order_total  = 0
     @order.order_lines.each do |ol|
       @order_total += ol.quantity * ol.product.price
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     total_price = 0
     if continue
       @sale = Sale.new
-      @sale.seller = current_seller
+      @sale.user = current_user
       @order.order_lines.each do |ol|
         ol.final_unit_price = ol.product.price
         ol.final_total_price = ol.product.price * ol.quantity

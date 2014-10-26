@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
     
-    before_action :authenticate_seller!, only: [:index]
+    before_action :authenticate_user!, only: [:index]
 
 	def show 
 		@sale = Sale.find(params[:id])
@@ -10,7 +10,7 @@ class SalesController < ApplicationController
 	end
 
 	def index 
-		@sales = current_seller.sales
+		@sales = current_user.sales
 	end
 
 end

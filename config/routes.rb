@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
-  #devise_for :sellers, :controllers => {:registrations => 'sellers/registrations'}
+
+  resources :users
+
+  devise_for :users, :skip => [:registrations, :sessions]
+
+  as :user do
+    get "/login" => "devise/sessions#new", :as => :new_user_session
+    post "/login" => "devise/sessions#create", :as => :user_session
+    delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
+  end
+
+
+  #devise_for :users, :skip => [:registrations, :sessions]
+  #devise_for :users,  :controllers => {:registrations => 'users/registrations'}
+  #scope "/admin" do
+  #  resources :users
+  #end  #devise_for :sellers, :controllers => {:registrations => 'sellers/registrations'}
   #devise_for :admins
   resources :products
   resources :categories

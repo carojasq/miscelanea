@@ -1,7 +1,10 @@
-<% if admin_signed_in? %>
+<% if user_signed_in? %>
+ <% if current_user.role.name=="Administrador" %>
+
 <h2> Bienvenido administrador a la aplicación de gestión de miscelánea </h2>
-<% elsif seller_signed_in? %>
-<h2> Bienvenido vendedor <%= current_seller.full_name %> a la aplicación de gestión de miscelánea </h2>
+<% elsif current_user.role.name=="Vendedor" %>
+<h2> Bienvenido vendedor <%= current_user.full_name %> a la aplicación de gestión de miscelánea </h2>
+<% end %>
 <% else %>
 <h2> Esta aplicación no está disponible para el público general </h2>
 <% end %>

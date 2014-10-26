@@ -13,17 +13,17 @@ class CashCountController < ApplicationController
 			@egresses = Egress.all
 		end
 
-		begin:
+		begin
 			sales_total = @sales.sum(:value)
 		# No results
-		rescue:
+		rescue
 			sales_total = 0
-
-		begin:
+		end
+		begin
 			egresses_total = @egresses.sum(:value)
-		rescue:
+		rescue
 			egresses_total = 0
-
+        end
 		@total = sales_total - egresses_total
 
 	end

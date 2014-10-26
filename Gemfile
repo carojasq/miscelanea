@@ -44,6 +44,9 @@ gem 'jquery-datatables-rails', '~> 2.2.3'
 gem 'foundation-icons-sass-rails'
 
 
+#Debuggin
+gem 'awesome_print'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

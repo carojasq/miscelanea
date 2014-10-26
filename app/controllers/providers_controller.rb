@@ -1,5 +1,7 @@
+require "awesome_print"
+
 class ProvidersController < ApplicationController
- before_action :authenticate_admin!, only: [:new,:create, :edit, :update, :destroy]
+ before_action :authenticate_user!, only: [:new,:create, :edit, :update, :destroy]
 
   def new
   	@provider = Provider.new
@@ -34,6 +36,7 @@ class ProvidersController < ApplicationController
 
   def index 
   	@providers = Provider.all
+    puts current_user.role.name
   end
 
   def create
