@@ -1,3 +1,5 @@
+<fieldset>
+  <legend>Formulario de categorias</legend>
 <%= form_for @category do |c| %>
   <% if @category.errors.any? %>
   <div id="error_explanation">
@@ -23,3 +25,4 @@
     <%= c.submit "Agregar categoria" %>
   </p>
 <% end %>
+</fieldset>

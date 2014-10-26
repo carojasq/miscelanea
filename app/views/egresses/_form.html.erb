@@ -1,3 +1,5 @@
+<fieldset>
+  <legend>Formulario de documento</legend>
 <%= form_for @egress do |f| %>
 
 <% if @egress.errors.any? %>
@@ -23,3 +25,4 @@
     <%= f.submit %>
   </p>
  <% end %>
+</fieldset>

@@ -1,3 +1,6 @@
+<fieldset>
+  <legend>Formulario de provedores</legend>
+
 <%= form_for @provider do |p| %>
   <% if @provider.errors.any? %>
   <div id="error_explanation">
@@ -27,3 +30,4 @@
     <%= p.submit %>
   </p>
 <% end %>
+</fieldset>
