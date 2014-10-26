@@ -1,0 +1,35 @@
+<h2>Registrar usuario</h2>
+
+<%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div><%= f.label  "Nombre" %><br />
+  <%= f.text_field :full_name, autofocus: true %></div>
+
+  <div><%= f.label "Correo electrónico" %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label "Contraseña" %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label "Confirmación de contraseña" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <div><%= f.label "Rol" %><br /> 
+     <%= f.collection_select :role_id, Role.all, :id, :name %></div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
