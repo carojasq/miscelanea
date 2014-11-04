@@ -12,14 +12,14 @@
   </tr>
 </thead>
   <tbody>
-  <% @order.order_lines.each do |p| %>
+  <% @order.order_details.each do |p| %>
   <tr>
   <td> <%= p.product.name %> </td> 
   <td> <%= p.quantity %> </td> 
   <td> <%= p.product.price %> </td> 
   <td> <%= p.product.price * p.quantity %> </td> 
-  <td><i class="fi-pencil"> <%= link_to "Modificar", edit_order_line_path(p) %></i> </td>
-  <td><i class="fi-trash"> <%= link_to "Eliminar", order_order_line_path(@order, p) , method: :delete, data: {confirm: "Are you sure?"} %></i> </td> 
+  <td><i class="fi-pencil"> <%= link_to "Modificar", edit_order_detail_path(p) %></i> </td>
+  <td><i class="fi-trash"> <%= link_to "Eliminar", order_order_detail_path(@order, p) , method: :delete, data: {confirm: "Are you sure?"} %></i> </td> 
     </tr>
   <% end %>
   <tr> <td> </td> </tr>
@@ -38,7 +38,7 @@
 <%= link_to "Finalizar orden", checkout_order_path(@order.id), class: "button", data: {options: "align:right", dropdown: "drop"}  %>
 
 <h3>Agregar producto al carro de compras:</h3>
-  <%= render 'order_lines/form' %>
+  <%= render 'order_details/form' %>
 
 
 

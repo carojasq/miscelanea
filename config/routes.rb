@@ -24,9 +24,9 @@ Rails.application.routes.draw do
   resources :orders
   resources :egresses
   resources :orders do
-    resources :order_lines
+    resources :order_details
   end
-  resources :order_lines
+  resources :order_details
   get 'sales/:id' => 'sales#show', as: "show_sale"
   get 'sales/' => 'sales#index'
   get 'order/' => 'orders#show', as: "my_order"
