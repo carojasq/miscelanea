@@ -5,6 +5,6 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_details
   validates :name, presence: true, length: { minimum: 3, maximum: 100 },  uniqueness: true
   validates_numericality_of :price,  more_than: 0 
-  validates_numericality_of :quantity,  more_than: 0 
+  validates_numericality_of :stock,  more_than: 0 
 
 end

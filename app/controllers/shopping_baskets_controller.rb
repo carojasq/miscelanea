@@ -12,16 +12,13 @@ class ShoppingBasketsController < ApplicationController
     @shopping_basket_taxes = @shopping_basket_total - @shopping_basket_subtotal
   end
 
-  def index 
-  	@shopping_baskets = Order.all
-  end
 
   def checkout  
     @shopping_basket = ShoppingBasket.find(params[:id])
     # Check existences
     continue = false
     @shopping_basket.order_details.each do |ol|
-      if ol.product.quantity >= ol.quantity
+      if ol.product.stock >= ol.quantity
         continue = true
       else
         continue = false
@@ -38,7 +35,7 @@ class ShoppingBasketsController < ApplicationController
         ol.final_unit_price = ol.product.price
         ol.final_total_price = ol.product.price * ol.quantity
         total_price += ol.final_total_price
-        ol.product.quantity -= ol.quantity
+        ol.product.stock -= ol.quantity
         ol.product.save
         ol.save
         @sale.order_details << ol

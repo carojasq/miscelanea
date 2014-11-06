@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     # Check existences
     continue = false
     @order.order_details.each do |ol|
-      if ol.product.quantity >= ol.quantity
+      if ol.product.stock >= ol.quantity
         continue = true
       else
         continue = false
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
         ol.final_unit_price = ol.product.price
         ol.final_total_price = ol.product.price * ol.quantity
         total_price += ol.final_total_price
-        ol.product.quantity -= ol.quantity
+        ol.product.stock -= ol.quantity
         ol.product.save
         ol.save
         @sale.order_details << ol
