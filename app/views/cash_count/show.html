@@ -1,10 +1,12 @@
-
+<center>
+<h2> Arqueo de caja </h2>
 
 <table id="cashcount">
   <thead>
   <tr>
     <th> Fecha </th> 
     <th> Descripción </th>
+    <th> Usuario </th>
     <th> Valor </th>
   </tr>
 </thead>
@@ -12,48 +14,24 @@
   <% @egresses.each do |e| %>
   <tr>
   <td> <%= e.created_at %> </td> 
-  <td> <%= e.description %> </td> 
-  <td> $<%= e.value %> </td> 
+  <td> Egreso: <%= e.description %> </td> 
+  <td> <%= e.user.full_name %> </td> 
+  <td> - $<%= e.value %> </td> 
   </tr>
    <% end %>
   <% @sales.each do |p| %>
   <tr>
   <td> <%= p.created_at %> </td> 
-  <td>  Venta # <%= p.id %> </td> 
+  <td> <%= link_to "Venta # #{p.id}", show_sale_path(p)  %> </td> 
+  <td> <%= p.user.full_name %> </td> 
   <td> $<%= p.value %> </td> 
   </tr>
   <% end %>
   <tr>
-    <td colspan="1"> <b> Total </b></td>
+    <td colspan="2"> <b> Total </b></td>
     <td colspan="2"> $<%= @total %> </td>
   </tr>
 </tbody>
-
-<fieldset>
-  <legend>Filtrar</legend>
-<%= form_tag  do %>
-  <div class="row">
-    <div class="large-6 columns">
-      <div class="small-3 columns">
-         <%= label_tag  "Fecha inicial:", nil,  :class =>  'right inline'  %> 
-      </div>
-       <div class="small-9 columns">
-        <%= date_field(:sale, :from_date) %>
-      </div>
-
-      <div class="small-3 columns">
-         <%= label_tag  "Fecha final:", nil,   :class =>  'right inline'  %> 
-      </div>
-       <div class="small-9 columns">
-        <%= date_field(:sale, :to_date) %>
-      </div>
-
-     </div>
-    </div>
-  <%= submit_tag("Filtrar") %>
-</fieldset>
-
-<% end %>
-
+</center>
 
 

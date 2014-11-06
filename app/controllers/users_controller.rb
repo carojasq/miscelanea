@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.order = Order.new
+      @user.shopping_basket = ShoppingBasket.new
       @user.save
       redirect_to @user, :flash => { :success => 'User was successfully created.' }
     else

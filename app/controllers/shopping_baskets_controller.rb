@@ -1,26 +1,26 @@
-class OrdersController < ApplicationController
+class ShoppingBasketsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:checkout, :edit, :show]
 
 
   def show
-    @order = current_user.order # Find article by id
-    @order_total  = 0
-    @order.order_details.each do |ol|
-      @order_total += ol.quantity * ol.product.price
+    @shopping_basket = current_user.shopping_basket # Find article by id
+    @shopping_basket_total  = 0
+    @shopping_basket.order_details.each do |ol|
+      @shopping_basket_total += ol.quantity * ol.product.price
     end 
-    @order_subtotal = @order_total / 1.16
-    @order_taxes = @order_total - @order_subtotal
+    @shopping_basket_subtotal = @shopping_basket_total / 1.16
+    @shopping_basket_taxes = @shopping_basket_total - @shopping_basket_subtotal
   end
 
   def index 
-  	@orders = Order.all
+  	@shopping_baskets = Order.all
   end
 
   def checkout  
-    @order = Order.find(params[:id])
+    @shopping_basket = ShoppingBasket.find(params[:id])
     # Check existences
     continue = false
-    @order.order_details.each do |ol|
+    @shopping_basket.order_details.each do |ol|
       if ol.product.quantity >= ol.quantity
         continue = true
       else
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     if continue
       @sale = Sale.new
       @sale.user = current_user
-      @order.order_details.each do |ol|
+      @shopping_basket.order_details.each do |ol|
         ol.final_unit_price = ol.product.price
         ol.final_total_price = ol.product.price * ol.quantity
         total_price += ol.final_total_price
@@ -45,10 +45,12 @@ class OrdersController < ApplicationController
       end
       @sale.value = total_price
       @sale.save
+      @shopping_basket.order_details = []
+      @shopping_basket.save
     end     
 
-    redirect_to shopping_basket_path(@order)
-    @order.order_details = [] 
+    redirect_to shopping_basket_path(@shopping_basket)
+     
   end
 
 end

@@ -21,20 +21,20 @@ Rails.application.routes.draw do
   resources :categories
   resources :providers
   resources :documents
-  resources :orders
+  resources :shopping_baskets
   resources :egresses
-  resources :orders do
+  resources :shopping_baskets do
     resources :order_details
   end
   resources :order_details
   get 'sales/:id' => 'sales#show', as: "show_sale"
   get 'sales/' => 'sales#index'
-  get 'order/' => 'orders#show', as: "my_order"
+  get 'shopping_basket/' => 'shopping_baskets#show', as: "my_shopping_basket"
   match "cash_count" => "cash_count#show", as: :cash_count, via: [:get, :post]
   root 'welcome#index'
 
   
-  get 'orders/checkout/:id' => 'orders#checkout', as: 'checkout_order'
+  get 'shopping_baskets/checkout/:id' => 'shopping_baskets#checkout', as: 'checkout_shopping_basket'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

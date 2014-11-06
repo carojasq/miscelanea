@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   before_create :set_default_role
   has_many :egresses
   has_many :sales
-  has_one :order
+  has_one :shopping_basket
 
   private
   def set_default_role
