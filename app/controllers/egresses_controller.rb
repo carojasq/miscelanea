@@ -6,9 +6,6 @@ class EgressesController < ApplicationController
   	@egress = Egress.new
   end
 
-  def edit
-  	@egress = Egress.find(params[:id])
-  end
 
   def index 
     if user_signed_in?
