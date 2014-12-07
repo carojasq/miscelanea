@@ -2,9 +2,31 @@
  <% if current_user.role.name=="Administrador" %>
 
 <h2> Bienvenido administrador a la aplicación de gestión de miscelánea </h2>
+	<% if @products_warning %>
+		<h3> Alerta </h3> 
+		Los siguientes productos están por agotarse :
+		<table id="ols">
+  		<thead>
+  		<tr>
+	    <th> Producto  </th> 
+    	<th> Cantidad </th>
+    	</tr>
+    	</thead>
+    	<tbody>
+	  	<%@products_warning.each do |p| %>
+	  	<tr>
+		  <td> <%= p.name %> </td> 
+		  <td> <%= p.stock %> </td>
+		 </tr>
+	  	<% end %>
+	  </tbody>
+	 <% end %>
+
+<%= @message %>
 <% elsif current_user.role.name=="Vendedor" %>
 <h2> Bienvenido vendedor <%= current_user.full_name %> a la aplicación de gestión de miscelánea </h2>
 <% end %>
 <% else %>
 <h2> Esta aplicación no está disponible para el público general </h2>
 <% end %>
+

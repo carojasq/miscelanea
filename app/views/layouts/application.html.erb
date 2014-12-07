@@ -36,7 +36,6 @@
      <ul class="right">
     <% if user_signed_in? %> <!--Admin-->
       <% if current_user.role.name=="Administrador" %>
-      <li class="active"><a href="#">Bienvenido administrador</a></li>
       <li> 
           <%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %>
       </li>
@@ -73,10 +72,9 @@
           <li>
             <%= link_to "Gestionar categorías", categories_path %>
           </li>
-
         </ul>
       </li>
-      <li>
+        <li>
         <%= link_to "Gestionar documentos", documents_path %>
       </li>
       <li>
@@ -88,6 +86,7 @@
       <li>
         <%= link_to "Arqueo de caja", cash_count_path %>
       </li>
+
     <% elsif current_user.role.name=="Vendedor"  %> <!--Seller-->
           <li> <a href="#"> Bienvenido vendedor  </a> </li>
           <li> <%= link_to "Mis ventas", sales_path %> </li>

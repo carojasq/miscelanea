@@ -7,7 +7,7 @@
   <p>
     <%= f.label  "Producto" %>
     <%# f.collection_select :product_id, Product.all, :id, :name, {class: "chosen-select"}  %>
-    <%= f.collection_select :product_id	, Product.all, :id, :name, {prompt: "Seleccione un producto"}, {class: "chosen-select"} %>
+    <%= f.collection_select :product_id	, Product.all.select{|p| p.stock>0}, :id, :name, {prompt: "Seleccione un producto"}, {class: "chosen-select"} %>
 
   </p>
   <p>
