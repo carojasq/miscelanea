@@ -17,13 +17,16 @@ class ShoppingBasketsController < ApplicationController
     @shopping_basket = ShoppingBasket.find(params[:id])
     # Check existences
     continue = false
+    to_remove = []
+    print "Shopping basket checkout" 
     @shopping_basket.order_details.each do |ol|
       if ol.product.stock >= ol.quantity
         continue = true
       else
         continue = false
+        @shopping_basket.order_details.delete(ol)
+        ol.destroy
         puts "There are not existences"
-        break 
       end   
     end
     # Creates sale and updates existences
@@ -44,9 +47,13 @@ class ShoppingBasketsController < ApplicationController
       @sale.save
       @shopping_basket.order_details = []
       @shopping_basket.save
-    end     
+      redirect_to shopping_basket_path(@shopping_basket)
+    else
+      render 'error_checkout'
+    end
 
-    redirect_to shopping_basket_path(@shopping_basket)
+
+    
      
   end
 

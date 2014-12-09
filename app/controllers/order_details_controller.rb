@@ -4,9 +4,14 @@ class OrderDetailsController < ApplicationController
 	end
 
 	def create 
-		@shopping_basket = ShoppingBasket.find(params[:shopping_basket_id])
-		@order_detail = @shopping_basket.order_details.create(order_detail_params)
-		redirect_to shopping_basket_path(@shopping_basket)
+		@order_detail = OrderDetail.new(order_detail_params)
+		if @order_detail.product.stock >= @order_detail.quantity
+			@shopping_basket = ShoppingBasket.find(params[:shopping_basket_id])
+			@order_detail = @shopping_basket.order_details.create(order_detail_params)
+			redirect_to shopping_basket_path(@shopping_basket)
+		else
+			render 'order_detail_error'
+		end
 	end
 
 	def edit

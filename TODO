@@ -1,5 +1,5 @@
 
 * Register seller from admin profile http://danielboggs.com/articles/rails-authentication-and-user-management-via-crud/
 * Extend Product model with check_existences method
- * Finish checkout_error template
+* Finish checkout_error template
 

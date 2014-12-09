@@ -42,7 +42,7 @@ class DocumentsController < ApplicationController
   		@mensaje = "Documento añadido con éxito"
   		redirect_to documents_path
   	else
-  		@mensaje = "No se pudo almacenar categoría"
+  		@mensaje = "No se pudo almacenar documento"
   		render 'new'
   	end
   end
