@@ -16,12 +16,12 @@ class ShoppingBasketsController < ApplicationController
   def checkout  
     @shopping_basket = ShoppingBasket.find(params[:id])
     # Check existences
-    continue = false
+    continue = true
     to_remove = []
     print "Shopping basket checkout" 
     @shopping_basket.order_details.each do |ol|
       if ol.product.stock >= ol.quantity
-        continue = true
+        continue = continue && true
       else
         continue = false
         @shopping_basket.order_details.delete(ol)
