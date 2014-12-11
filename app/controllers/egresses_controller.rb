@@ -19,15 +19,11 @@ class EgressesController < ApplicationController
   end
 
   def create
-    puts user_signed_in?
-    puts current_user
     @egress = Egress.new(egress_params)
     @egress.user = current_user
   	if @egress.save 
-  		@mensaje = "Documento añadido con éxito"
   		redirect_to egresses_path
   	else
-  		@mensaje = "No se pudo almacenar categoría"
   		render 'new'
   	end
   end
