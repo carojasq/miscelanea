@@ -4,16 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
 
-  def create
-    super
-    if resource.save
-      @user = User.find(resource.id)
-      @user.order = Order.new
-      @user.save
-    end
-    puts @user.order.class
-
-  end
+  #def create
+  #  super
+  #end
 
 
   # GET /resource/sign_up

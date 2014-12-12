@@ -19,7 +19,7 @@
   <td> <%= p.product.price %> </td> 
   <td> <%= p.product.price * p.quantity %> </td> 
   <td><i class="fi-pencil"> <%= link_to "Modificar", edit_order_detail_path(p) %></i> </td>
-  <td><i class="fi-trash"> <%= link_to "Eliminar", shopping_basket_order_detail_path(@shopping_basket, p) , method: :delete, data: {confirm: "Are you sure?"} %></i> </td> 
+  <td><i class="fi-trash"> <%= link_to "Eliminar", shopping_basket_order_detail_path(@shopping_basket, p) , method: :delete, data: {confirm: "Está seguro de eliminar este producto del carro de compras?"} %></i> </td> 
     </tr>
   <% end %>
   <tr> <td> </td> </tr>

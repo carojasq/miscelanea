@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.shopping_basket = ShoppingBasket.new
       @user.save
-      redirect_to @user, :flash => { :success => 'User was successfully created.' }
+      redirect_to @user, :flash => { :success => 'Usuario fue creado exitosamente.' }
     else
       render :action => 'new'
     end
